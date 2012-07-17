@@ -40,7 +40,6 @@
   <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
   <script src="js/plugins.js"></script>
-  <script src="js/raphael-min.js" type="text/javascript" charset="utf-8" async defer></script>
   <script type="text/javascript" src="js/colorpicker.js"></script>
   <script src="js/script.js"></script>
 

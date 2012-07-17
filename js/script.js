@@ -10,7 +10,8 @@ $(document).ready(function(){
 			}	
 		}
 	})
-	var oldBg, md; //retain the old block color/ md = mousedown flag
+	var oldBg; //retain the old block color/ md = mousedown flag
+	var md = false;
 	var setColor = "#000000"; //default color picker & cursor color:black
 
 	//USER MOUSE CLICK/MOVE ACTIVITY ON THE CANVAS
@@ -23,7 +24,7 @@ $(document).ready(function(){
 	})
 
 	$(".canvasTile").mousedown(function(){md = true})
-	$(".canvasTile").mouseup(function(){md = false})
+	$(document).mouseup(function(){md = false;})
 
 	$(".canvasTile").mousemove(function(){
 			if(md)
