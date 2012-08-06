@@ -1,6 +1,12 @@
 /* Author: Meher Ranjan  */
 
 $(document).ready(function(){
+	var ts = event.timeStamp;
+	//MixPanel Data
+ 	mixpanel.track("App Page Load",{
+ 		'Timestamp':ts
+ 	});
+
 
 	//INITIALISE
 	$("#grid").append(function(){
@@ -18,22 +24,27 @@ $(document).ready(function(){
 	$(".canvasTile").toggle(function(){
 		oldBg = $(this).css("background-color")
 		$(this).css("background-color",setColor)
+		mixpanel.track("Pixel Colored");
 	},
 	function(){
 		$(this).css("background-color",oldBg)
+		mixpanel.track("Pixel De-colored");
 	})
 
-	$(".canvasTile").mousedown(function(){md = true})
+	$(document).mousedown(function(){md = true})
 	$(document).mouseup(function(){md = false;})
 
 	$(".canvasTile").mousemove(function(){
-			if(md)
+		if(md){
 			$(this).css("background-color",setColor)	
+			mixpanel.track("Pixel Colored");
+		}
 	})
 
 	$("#clearcanvas").click(function(){
 		$(".canvasTile").css("background","#fff");
-		$("#temp").attr("checked", false)
+		$("#temp").attr("checked", false)		
+		mixpanel.track("Canvas Cleared");
 	})
 
 	//PROCESS THE DATA N SAVE THE IMAGE
@@ -47,6 +58,7 @@ $(document).ready(function(){
 			}
 		}
 		$.download('http://localhost/pixelart/download.php',colorarr);
+		mixpanel.track("Saved To Desktop");
 	})	
 
 	//CLICK OF A TEMPLATE
@@ -63,12 +75,14 @@ $(document).ready(function(){
 			},
 			"json"
 		);
+		mixpanel.track("Templates Used");
 	})
 
-	//COLORPICKER INITIALISATION
+	//ColorPickerKER INITIALISATION
 	$('#colorinput').ColorPicker({color:'000000', flat: true,
 	onChange: function (hsb, hex, rgb) {
 		setColor = "#"+hex;
+		mixpanel.track("Color Picker Used);
 	}});
 })
 
